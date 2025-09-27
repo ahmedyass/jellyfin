@@ -1,0 +1,45 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: unless-stopped
+
+  duckdns:
+    image: linuxserver/duckdns
+    container_name: duckdns
+    env_file:
+      - ./duckdns/duckdns.env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - ./duckdns:/config
+    restart: unless-stopped
+
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    volumes:
+    - ./jellyfin/config:/config
+    - ./jellyfin/cache:/cache
+    - type: bind
+      source: /mnt/c/Media/Movies
+      target: /media/movies
+      read_only: true
+    - type: bind
+      source: /mnt/c/Media/Series
+      target: /media/series
+      read_only: true
+    ports:
+    - 8096:8096
+    restart: 'unless-stopped'
+    environment:
+      - JELLYFIN_PublishedServerUrl=http://<your-subdomain>.duckdns.org
+      - PUID=1000
+      - PGID=1000
