@@ -1,0 +1,11 @@
+/prowlarr
+/jellyseerr
+/sonarr
+/radarr
+/gluetun
+/qbittorrent
+/jellyfin
+.env
+/nginx/arr.default.conf
+/duckdns
+compose.yml
