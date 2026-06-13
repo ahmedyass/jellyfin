@@ -7,5 +7,5 @@
 /jellyfin
 .env
 /nginx/arr.default.conf
-/duckdns/duckdns.env
+/duckdns
 compose.yml
