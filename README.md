@@ -86,10 +86,6 @@ cp sample.env .env
 VPN_USER=your_vpn_username
 VPN_PASS=your_vpn_password
 
-# qBittorrent default credentials
-QBIT_USER=admin
-QBIT_PASS=your_secure_password
-
 # DuckDNS credentials
 DUCKDNS_DOMAIN=your_subdomain
 DUCKDNS_TOKEN=your_duckdns_token
